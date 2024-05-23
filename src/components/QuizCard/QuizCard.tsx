@@ -1,9 +1,19 @@
+import { MouseEvent } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import { quizActions } from '@/services/quizSlice'
+import { AppDispatch } from '@/services/store'
 import { Quiz } from '@/types'
 
 export const QuizCard = ({ quiz }: QuizProps) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch<AppDispatch>()
+
+  const deleteQuiz = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    dispatch(quizActions.deleteQuizThunk(quiz.id))
+  }
 
   return (
     <div
@@ -12,6 +22,7 @@ export const QuizCard = ({ quiz }: QuizProps) => {
     >
       <div>{quiz.name}</div>
       <div>{quiz.id}</div>
+      <button onClick={e => deleteQuiz(e)}>Delete</button>
     </div>
   )
 }

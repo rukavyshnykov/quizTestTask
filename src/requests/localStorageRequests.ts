@@ -1,11 +1,11 @@
 import { Quiz } from '@/types'
 
 export const requests = {
-  asyncAddQuiz: (key: string, quiz: Quiz[], delay = 1000) => {
+  asyncAddQuiz: (key: string, obj: any, delay = 1000) => {
     return new Promise((resolve, reject) => {
       try {
         setTimeout(() => {
-          localStorage.setItem(key, JSON.stringify(quiz))
+          localStorage.setItem(key, JSON.stringify(obj))
           resolve(`Data stored successfully`)
         }, delay)
       } catch (error) {

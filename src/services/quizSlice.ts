@@ -43,9 +43,13 @@ const slice = createAppSlice({
         const { getState } = thunkAPI
         const state = getState() as RootState
         const newState = state.quiz.filter(q => q.id !== id)
+        const newQuestionsState = { ...state.question }
+
+        delete newQuestionsState[id]
 
         try {
           await requests.asyncAddQuiz('quizzes', newState)
+          await requests.asyncAddQuiz('questions', newQuestionsState)
 
           return id
         } catch (e) {
