@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+import { quizReducer } from './quizSlice'
+
 export const store = configureStore({
   middleware: getDefaultMiddleware => getDefaultMiddleware(),
-  reducer: {},
+  reducer: {
+    quiz: quizReducer,
+  },
 })
 
 export type AppDispatch = typeof store.dispatch
