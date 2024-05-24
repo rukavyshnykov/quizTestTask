@@ -1,30 +1,25 @@
-# React + TypeScript + Vite
+Серед усіх завдань, які були поставлені у ТЗ, мені вдалося зробити наступні (+++ - таск виконано, +- - є деякі нюанси):
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+До реалізації:
+Список можливих вікторин; +++
+Можливість додати нову вікторину; +++
+Можливість видалити вікторину; +++
+Можливість редагувати вікторину; +++
+При створенні вікторини повинна бути можливість сформувати питання (додати / видалити) і можливі відповіді для них (динамічна кількість відповідей буде плюсом), також позначити правильну відповідь, за яку при проходженні вікторини буде зараховуватись бал; +++
+При редагуванні можливість змінити кількість питань (додати / видалити); +++
+Можливість проходити вікторину і отримувати кінцевий результат. +++
 
-Currently, two official plugins are available:
+Додаткові бали (можуть сильно вплинути на оцінку):
+Можливість пошуку вікторини за іменем; +++
+Реалізувати таймер виконання вікторини; +++
+Динамічна кількість відповідей на питання; +++
+Можливість налаштування кількості балів за питання; +++
+Реалізація різних типів відповідей (наприклад текстове, мультивибір); +-
+Можливість після проходження переглядати свої відповіді;
+Рейтинг. +-
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Серед тих тасків, які я помітив +-, перший (Реалізація різних типів відповідей) фактично присутній, адже позначити правильною можно декілька відповідей, але це єдиний різновид відповіді окрім звичайного
 
-## Expanding the ESLint configuration
+Також Рейтинг, тому що після завершення квізу, на дашборді зі всіма квізами потім виводиться кількість балів на конкретному квізі, яку було набрано востаннє
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Серед того, що я би доробив, це повиносив би всю логіку з компонент у кастомні хуки, додав би валідацію, виправив би невеличкі баги та загалом провів би рефакторинг.
