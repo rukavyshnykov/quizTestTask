@@ -1,11 +1,7 @@
 import { useForm } from 'react-hook-form'
 
 export const AddQuizForm = ({ onSubmit }: AddQuizFormProps) => {
-  const {
-    formState: { errors },
-    handleSubmit,
-    register,
-  } = useForm<FormValues>({
+  const { handleSubmit, register } = useForm<FormValues>({
     defaultValues: {
       name: '',
     },
