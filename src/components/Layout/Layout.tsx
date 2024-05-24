@@ -15,18 +15,17 @@ export const Layout = () => {
     dispatch(questionActions.getQuestionsThunk())
   }, [dispatch])
 
-  const [state, setState] = useState('')
-
-  const addQuiz = (name: string) => {
-    dispatch(quizActions.addQuizThunk(name))
-  }
-
   return (
     <div>
       <div className={'flex items-center bg-stone-700 gap-2.5 p-5 justify-between'}>
-        <h1 onClick={() => navigate('/')}>React Quiz</h1>
-        <input onChange={e => setState(e.target.value)} value={state} />
-        <button onClick={() => addQuiz(state)}>Add Quiz</button>
+        <h1
+          className={
+            'px-2 py-2 rounded-lg shadow-2xl cursor-pointer font-bold text-2xl bg-slate-300'
+          }
+          onClick={() => navigate('/')}
+        >
+          React Quiz
+        </h1>
       </div>
       <div className={'mb-8 mt-8 w-full'}>
         <div className={'flex justify-center mx-auto my-0 max-w-7xl w-full'}>

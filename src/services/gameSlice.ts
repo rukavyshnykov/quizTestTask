@@ -1,7 +1,7 @@
 import { Game, Question } from '@/types'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-const initialState: Game = { points: 0 }
+const initialState: Game = { points: 0, time: undefined }
 
 const slice = createSlice({
   initialState,
@@ -19,6 +19,12 @@ const slice = createSlice({
       ) {
         state.points += action.payload.question.value
       }
+    },
+    resetPoints: state => {
+      state.points = 0
+    },
+    setTimer: (state, action) => {
+      state.time = action.payload
     },
   },
 })

@@ -30,24 +30,26 @@ export const AddQuestionForm = ({ onSubmit }: AddQuestionFormProps) => {
 
   return (
     <div className={'flex flex-col align-middle border-2 p-3 border-black'}>
-      <span className={'text-center'}>Add Question</span>
-      <form className={'flex flex-col align-middle gap-2'} onSubmit={handleSubmit(onSubmit)}>
-        <label>
-          <span>Question</span>
-          <input type={'text'} {...register('text')} />
-        </label>
-        <label>
-          <span>Value</span>
-          <input type={'number'} {...register('value', { valueAsNumber: true })} />
-        </label>
+      <span className={'text-center mb-4 font-bold text-lg'}>Add Question</span>
+      <form className={'flex flex-col align-middle gap-4'} onSubmit={handleSubmit(onSubmit)}>
+        <div className={'flex justify-between gap-2'}>
+          <label className={'inline-block w-min'}>
+            <span>Question</span>
+            <input type={'text'} {...register('text')} />
+          </label>
+          <label className={'inline-block w-min'}>
+            <span>Value</span>
+            <input type={'number'} {...register('value', { valueAsNumber: true })} />
+          </label>
+        </div>
         {fields.map((field, index) => {
           return (
             <div className={'flex gap-2'} key={field.id}>
-              <label>
+              <label className={'w-min'}>
                 <span>Answer</span>
                 <input {...register(`variants.${index}.text`)} type={'text'} />
               </label>
-              <label>
+              <label className={'flex items-center justify-center gap-4'}>
                 <span>Is this answer correct?</span>
                 <input {...register(`variants.${index}.correct`)} type={'checkbox'} />
               </label>
@@ -55,7 +57,7 @@ export const AddQuestionForm = ({ onSubmit }: AddQuestionFormProps) => {
           )
         })}
         <button
-          className={'bg-orange-500 p-2 border rounded-md w-1/6'}
+          className={'bg-orange-500 p-2 border rounded-md w-1/6 w-fit'}
           onClick={() => append({ correct: false, text: '' })}
           type={'button'}
         >

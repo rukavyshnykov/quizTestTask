@@ -31,7 +31,7 @@ const slice = createAppSlice({
         const question = { id, text, value, variants }
 
         try {
-          await requests.asyncAddQuiz('questions', {
+          await requests.mutationSimulation('questions', {
             ...state.question,
             [quizId]: [...state.question[quizId], question],
           })
@@ -55,7 +55,7 @@ const slice = createAppSlice({
         const newQuestions = [...state.question[quizId]].filter(q => q.id !== id)
 
         try {
-          await requests.asyncAddQuiz('questions', {
+          await requests.mutationSimulation('questions', {
             ...state.question,
             [quizId]: newQuestions,
           })
@@ -76,7 +76,7 @@ const slice = createAppSlice({
     getQuestionsThunk: create.asyncThunk(
       async () => {
         try {
-          const res = await requests.asyncGetItem('questions')
+          const res = await requests.querySimulation('questions')
 
           return res
         } catch (e) {

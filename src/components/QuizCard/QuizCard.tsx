@@ -17,12 +17,16 @@ export const QuizCard = ({ quiz }: QuizProps) => {
 
   return (
     <div
-      className={'flex flex-col items-center p-4 bg-slate-500 border-2 border-red-900'}
+      className={
+        'flex flex-col items-center p-4 border-2 border-red-900 cursor-pointer transition-all hover:shadow-md hover:shadow-red-600 w-2/5 m-3 shrink'
+      }
       onClick={() => navigate(`/${quiz.id}`)}
     >
-      <div>{quiz.name}</div>
-      <div>{quiz.id}</div>
-      <button onClick={e => deleteQuiz(e)}>Delete</button>
+      <div className={'font-bold text-2xl'}>{quiz.name}</div>
+      {quiz.lastScore && <div>Last score: {quiz.lastScore}</div>}
+      <button className={'bg-orange-500 p-2 rounded-md mt-auto'} onClick={e => deleteQuiz(e)}>
+        Delete
+      </button>
     </div>
   )
 }

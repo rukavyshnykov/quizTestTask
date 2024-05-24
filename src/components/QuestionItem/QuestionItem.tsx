@@ -12,10 +12,13 @@ export const QuestionItem = ({ question, quizId }: QuestionItemProps) => {
   }
 
   return (
-    <div className={'flex justify-start w-full border-2 border-black m-2 p-2'}>
+    <div className={'flex justify-start w-full border-2 border-black m-2 p-2 items-center gap-4'}>
       <span>{question.text}</span>
       <span>Value: {question.value}</span>
-      <button className={'bg-orange-500 p-2 border rounded-md'} onClick={() => deleteQuestion()}>
+      <button
+        className={'bg-orange-500 p-2 border rounded-md ml-auto'}
+        onClick={() => deleteQuestion()}
+      >
         DELETE
       </button>
     </div>

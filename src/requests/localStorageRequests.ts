@@ -1,7 +1,5 @@
-import { Quiz } from '@/types'
-
 export const requests = {
-  asyncAddQuiz: (key: string, obj: any, delay = 1000) => {
+  mutationSimulation: (key: string, obj: any, delay = 1000) => {
     return new Promise((resolve, reject) => {
       try {
         setTimeout(() => {
@@ -13,7 +11,7 @@ export const requests = {
       }
     })
   },
-  asyncGetItem: (key: string, delay = 1000) => {
+  querySimulation: (key: string, delay = 1000) => {
     return new Promise((resolve, reject) => {
       try {
         setTimeout(() => {

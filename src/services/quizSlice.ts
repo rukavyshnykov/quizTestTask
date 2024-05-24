@@ -25,7 +25,7 @@ const slice = createAppSlice({
         const quiz = { id: v1(), lastScore: undefined, name }
 
         try {
-          await requests.asyncAddQuiz('quizzes', [...state.quiz, quiz])
+          await requests.mutationSimulation('quizzes', [...state.quiz, quiz])
 
           return quiz
         } catch (e) {
@@ -35,6 +35,32 @@ const slice = createAppSlice({
       {
         fulfilled: (state, action) => {
           state.push(action.payload as Quiz)
+        },
+      }
+    ),
+    changeQuizThunk: create.asyncThunk(
+      async (quiz: Partial<Quiz>, thunkAPI) => {
+        const { getState } = thunkAPI
+        const state = getState() as RootState
+        const index = state.quiz.findIndex(el => el.id === quiz.id)
+        const newState = [...state.quiz]
+
+        newState[index] = { ...state.quiz[index], ...quiz }
+
+        try {
+          await requests.mutationSimulation('quizzes', newState)
+
+          return quiz
+        } catch (e) {
+          console.error(e)
+        }
+      },
+      {
+        fulfilled: (state, action) => {
+          const index = state.findIndex(el => el.id === action.payload?.id)
+
+          console.log(action.payload)
+          state[index] = { ...state[index], ...action.payload }
         },
       }
     ),
@@ -48,8 +74,8 @@ const slice = createAppSlice({
         delete newQuestionsState[id]
 
         try {
-          await requests.asyncAddQuiz('quizzes', newState)
-          await requests.asyncAddQuiz('questions', newQuestionsState)
+          await requests.mutationSimulation('quizzes', newState)
+          await requests.mutationSimulation('questions', newQuestionsState)
 
           return id
         } catch (e) {
@@ -65,7 +91,7 @@ const slice = createAppSlice({
     getQuizThunk: create.asyncThunk(
       async () => {
         try {
-          const res = await requests.asyncGetItem('quizzes')
+          const res = await requests.querySimulation('quizzes')
 
           return res
         } catch (e) {

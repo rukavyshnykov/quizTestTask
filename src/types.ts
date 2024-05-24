@@ -22,4 +22,5 @@ export type Variant = {
 
 export type Game = {
   points: number
+  time: string | undefined
 }
