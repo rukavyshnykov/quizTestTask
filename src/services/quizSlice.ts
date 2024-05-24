@@ -59,7 +59,6 @@ const slice = createAppSlice({
         fulfilled: (state, action) => {
           const index = state.findIndex(el => el.id === action.payload?.id)
 
-          console.log(action.payload)
           state[index] = { ...state[index], ...action.payload }
         },
       }

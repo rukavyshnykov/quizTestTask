@@ -5,12 +5,7 @@ import { Question } from '@/types'
 type FormValues = Omit<Question, 'id'>
 
 export const AddQuestionForm = ({ onSubmit }: AddQuestionFormProps) => {
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-    register,
-  } = useForm<FormValues>({
+  const { control, handleSubmit, register } = useForm<FormValues>({
     defaultValues: {
       text: '',
       value: 1,
@@ -57,7 +52,7 @@ export const AddQuestionForm = ({ onSubmit }: AddQuestionFormProps) => {
           )
         })}
         <button
-          className={'bg-orange-500 p-2 border rounded-md w-1/6 w-fit'}
+          className={'bg-orange-500 p-2 border rounded-md w-fit'}
           onClick={() => append({ correct: false, text: '' })}
           type={'button'}
         >
