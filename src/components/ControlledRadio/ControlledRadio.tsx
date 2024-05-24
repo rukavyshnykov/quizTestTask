@@ -1,6 +1,6 @@
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-import { Radio, RadioProps } from '@/components/ui/Radio'
+import { Radio, RadioProps } from '@/components/Radio'
 
 const mockOptions = [
   { label: 'Science', value: '1' },
@@ -32,5 +32,5 @@ export const ControlledRadio = <TFieldValues extends FieldValues>({
   )
 }
 
-type ControlledRadioProps<TFieldValues extends FieldValues> = UseControllerProps<TFieldValues> &
-  Omit<RadioProps, 'onChange'>
+type ControlledRadioProps<TFieldValues extends FieldValues> = Omit<RadioProps, 'onChange'> &
+  UseControllerProps<TFieldValues>

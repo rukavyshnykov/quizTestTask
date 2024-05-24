@@ -1,14 +1,14 @@
 export type Quiz = {
   id: string
+  lastScore: string | undefined
   name: string
 }
 
 export type Question = {
-  answer: string
   id: string
   text: string
-  value: string //TODO:Change to number
-  variants: Variant[] | undefined
+  value: number
+  variants: Variant[]
 }
 
 export type QuestionStateType = {
@@ -18,4 +18,8 @@ export type QuestionStateType = {
 export type Variant = {
   correct: boolean
   text: string
+}
+
+export type Game = {
+  points: number
 }

@@ -27,8 +27,8 @@ const slice = createAppSlice({
       async (payloadQuestion: PayloadQuestion, thunkAPI) => {
         const { getState } = thunkAPI
         const state = getState() as RootState
-        const { answer, id, quizId, text, value, variants } = payloadQuestion
-        const question = { answer, id, text, value, variants }
+        const { id, quizId, text, value, variants } = payloadQuestion
+        const question = { id, text, value, variants }
 
         try {
           await requests.asyncAddQuiz('questions', {

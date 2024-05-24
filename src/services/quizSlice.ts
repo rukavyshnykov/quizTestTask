@@ -22,7 +22,7 @@ const slice = createAppSlice({
       async (name: string, thunkAPI) => {
         const { getState } = thunkAPI
         const state = getState() as RootState
-        const quiz = { id: v1(), name }
+        const quiz = { id: v1(), lastScore: undefined, name }
 
         try {
           await requests.asyncAddQuiz('quizzes', [...state.quiz, quiz])

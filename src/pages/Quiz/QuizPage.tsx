@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { QuestionItem } from '@/components/QuestionItem/QuestionItem'
+import { AddQuestionForm } from '@/forms/AddQuestionForm'
 import { selectQuestions, selectQuizzes } from '@/selectors'
 import { questionActions } from '@/services/questionSlice'
 import { AppDispatch } from '@/services/store'
@@ -13,10 +14,10 @@ export const QuizPage = () => {
   const { id } = useParams()
   const dispatch = useDispatch<AppDispatch>()
 
+  const navigate = useNavigate()
+
   const quizzes = useSelector(selectQuizzes)
   const questions = useSelector(selectQuestions)
-
-  // console.log(questions)
 
   const [quiz, setQuiz] = useState<Quiz>()
 
@@ -24,15 +25,12 @@ export const QuizPage = () => {
     setQuiz(quizzes.find(q => q.id === id))
   }, [quizzes, id])
 
-  const addQuestion = () => {
+  const addQuestion = (data: Omit<Question, 'id'>) => {
     dispatch(
       questionActions.addQuestionThunk({
-        answer: '3',
         id: v1(),
         quizId: id ?? '',
-        text: 'queres?',
-        value: '3',
-        variants: undefined,
+        ...data,
       })
     )
   }
@@ -43,14 +41,20 @@ export const QuizPage = () => {
 
   return (
     <div className={'w-full max-w-7xl px-5'}>
+      <AddQuestionForm onSubmit={addQuestion} />
       <div className={'flex gap-3'}>
         <h1 className={'font-bold text-2xl'}>{quiz.name}</h1>
-        <button className={'bg-orange-500 p-2 border rounded-md'} onClick={() => addQuestion()}>
-          Add question
+        <button
+          className={'bg-orange-500 p-2 border rounded-md'}
+          disabled={questions[quiz.id].length < 1}
+          onClick={() => navigate(`${1}`)}
+          type={'button'}
+        >
+          Start quiz!
         </button>
       </div>
       <div>
-        {id && questions[id] ? (
+        {id && questions[id] && questions[id].length ? (
           questions[id].map((question: Question) => (
             <QuestionItem key={question.id} question={question} quizId={id ?? ''} />
           ))

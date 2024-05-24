@@ -4,7 +4,6 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import c from './Radio.module.scss'
 
-import { Option } from '../Select'
 import { Typography } from '../Typography'
 
 export const Radio = forwardRef<HTMLDivElement, RadioProps>(
@@ -27,5 +26,5 @@ export const Radio = forwardRef<HTMLDivElement, RadioProps>(
 )
 
 export type RadioProps = {
-  options?: Option[]
+  options?: any[]
 } & ComponentPropsWithoutRef<typeof RadioGroup.Root>

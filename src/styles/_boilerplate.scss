@@ -23,6 +23,13 @@ html {
     font-style: inherit;
     color: inherit;
   }
+
+  input[type="text"],
+  input[type="number"]{
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 6px;
+  }
    
   a:visited {
     color: inherit;
